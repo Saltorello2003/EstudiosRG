@@ -18,7 +18,9 @@ app.use(cors({
 }));
 
 // Servir o front-end (index.html) - ISSO RESOLVE O "Cannot GET /"
-app.use(express.static(path.join(__dirname)));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
